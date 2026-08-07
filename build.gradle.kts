@@ -1,10 +1,10 @@
 plugins {
     `java-library`
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.21"
 }
 
 group = "org.dreeam.expansion.folia"
-version = "1.0.0"
+version = "1.2.0"
 description = "PlaceholderAPI expansion for Folia"
 
 repositories {
@@ -27,7 +27,7 @@ dependencies {
         exclude(group = "org.bstats")
     }
 
-    paperweight.foliaDevBundle("1.21.8-R0.1-SNAPSHOT")
+    paperweight.foliaDevBundle("1.21.11-R0.1-SNAPSHOT")
 }
 
 tasks.withType<JavaCompile> {

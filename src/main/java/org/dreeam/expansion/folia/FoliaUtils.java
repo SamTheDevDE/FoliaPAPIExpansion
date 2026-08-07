@@ -2,7 +2,7 @@ package org.dreeam.expansion.folia;
 
 import io.papermc.paper.threadedregions.RegionizedServer;
 import io.papermc.paper.threadedregions.ThreadedRegionizer;
-import io.papermc.paper.threadedregions.TickData;
+import ca.spottedleaf.moonrise.common.time.TickData;
 import io.papermc.paper.threadedregions.TickRegionScheduler;
 import io.papermc.paper.threadedregions.TickRegions;
 import net.minecraft.world.level.Level;
@@ -67,7 +67,7 @@ public class FoliaUtils {
         final TickRegionScheduler.RegionScheduleHandle regionHandle = RegionizedServer.getGlobalTickData();
 
         for (final ThreadedRegionizer.ThreadedRegion<TickRegions.TickRegionData, TickRegions.TickRegionSectionData> region : regions) {
-            final TickData.TickReportData report = region.getData().getRegionSchedulingHandle().getTickReport15s(now);
+            final ca.spottedleaf.moonrise.common.time.TickData.TickReportData report = region.getData().getRegionSchedulingHandle().getTickReport15s(now);
             totalUtil += (report == null ? 0.0 : report.utilisation());
         }
 
