@@ -1,6 +1,6 @@
 # Third-party notices
 
-The runtime-ready Folia-Expansion JAR contains relocated portions of the Kotlin standard library.
+The runtime-ready FoliaPAPIExpansion JAR contains relocated portions of the Kotlin standard library.
 
 ## Kotlin standard library
 

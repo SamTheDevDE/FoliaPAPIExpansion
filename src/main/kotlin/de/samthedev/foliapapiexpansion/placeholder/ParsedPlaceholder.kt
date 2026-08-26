@@ -1,10 +1,10 @@
-// Folia-Expansion
+// FoliaPAPIExpansion
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package org.dreeam.expansion.folia.placeholder
+package de.samthedev.FoliaPAPIExpansion.placeholder
 
-import org.dreeam.expansion.folia.metrics.MetricInterval
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricInterval
 
 internal enum class MetricScope {
     GLOBAL,

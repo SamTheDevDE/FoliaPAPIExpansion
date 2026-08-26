@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package org.dreeam.expansion.folia.placeholder
+package de.samthedev.FoliaPAPIExpansion.placeholder
 
-import org.dreeam.expansion.folia.metrics.MetricInterval
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricInterval
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs

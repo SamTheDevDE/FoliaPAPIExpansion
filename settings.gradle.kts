@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Folia-Expansion"
+rootProject.name = "FoliaPAPIExpansion"

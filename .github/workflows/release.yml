@@ -47,7 +47,7 @@ jobs:
         run: |
           test -z "$(find src -type f -name '*.java' -print -quit)"
           project_version="$(./gradlew -q printVersion)"
-          artifact="build/libs/Folia-Expansion-${project_version}.jar"
+          artifact="build/libs/FoliaPAPIExpansion-${project_version}.jar"
           test -f "$artifact"
           jar tf "$artifact" > "$RUNNER_TEMP/jar-entries.txt"
           grep -q '^org/dreeam/expansion/folia/libs/kotlin/jvm/internal/Intrinsics.class$' "$RUNNER_TEMP/jar-entries.txt"
@@ -62,4 +62,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ARTIFACT: ${{ steps.artifact.outputs.artifact }}
           CHECKSUM: ${{ steps.artifact.outputs.checksum }}
-        run: gh release create "$GITHUB_REF_NAME" "$ARTIFACT" "$CHECKSUM" --verify-tag --generate-notes --title "Folia-Expansion $GITHUB_REF_NAME"
+        run: gh release create "$GITHUB_REF_NAME" "$ARTIFACT" "$CHECKSUM" --verify-tag --generate-notes --title "FoliaPAPIExpansion $GITHUB_REF_NAME"

@@ -1,5 +1,5 @@
 /*
- * Folia-Expansion
+ * FoliaPAPIExpansion
  * Copyright (C) 2026 SamTheDevDE
  *
  * This program is free software: you can redistribute it and/or modify
@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-package org.dreeam.expansion.folia
+package de.samthedev.FoliaPAPIExpansion
 
 import me.clip.placeholderapi.expansion.Cacheable
 import me.clip.placeholderapi.expansion.Configurable
@@ -18,15 +18,15 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
-import org.dreeam.expansion.folia.config.ExpansionConfig
-import org.dreeam.expansion.folia.metrics.Folia26MetricProvider
-import org.dreeam.expansion.folia.metrics.MetricProvider
-import org.dreeam.expansion.folia.placeholder.ParsedPlaceholder
-import org.dreeam.expansion.folia.placeholder.PlaceholderParser
-import org.dreeam.expansion.folia.placeholder.PlaceholderRenderer
+import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
+import de.samthedev.FoliaPAPIExpansion.metrics.Folia26MetricProvider
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricProvider
+import de.samthedev.FoliaPAPIExpansion.placeholder.ParsedPlaceholder
+import de.samthedev.FoliaPAPIExpansion.placeholder.PlaceholderParser
+import de.samthedev.FoliaPAPIExpansion.placeholder.PlaceholderRenderer
 import java.util.LinkedHashMap
 
-class FoliaExpansion : PlaceholderExpansion(), Cacheable, Configurable {
+class FoliaPAPIExpansion : PlaceholderExpansion(), Cacheable, Configurable {
     @Volatile
     private var runtimeComponents: RuntimeComponents? = null
 

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package org.dreeam.expansion.folia.placeholder
+package de.samthedev.FoliaPAPIExpansion.placeholder
 
-import org.dreeam.expansion.folia.config.ExpansionConfig
-import org.dreeam.expansion.folia.metrics.MetricSample
+import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricSample
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import java.util.Locale

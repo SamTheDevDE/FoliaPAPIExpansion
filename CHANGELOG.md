@@ -4,7 +4,7 @@ All notable changes are documented here. This project follows [Semantic Versioni
 
 ## [Unreleased]
 
-## [2.0.0] - 2026-08-26
+## [2.0.2] - 2026-08-26
 
 ### Added
 
@@ -27,5 +27,5 @@ All notable changes are documented here. This project follows [Semantic Versioni
 
 - All Java source, Guava caching, Adventure formatting, and the internal Folia `CommandUtil` dependency.
 
-[Unreleased]: https://github.com/SamTheDevDE/Folia-Expansion/compare/v2.0.0...HEAD
-[2.0.0]: https://github.com/SamTheDevDE/Folia-Expansion/compare/400fbee...v2.0.0
+[Unreleased]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/400fbee...v2.0.2

@@ -1,8 +1,8 @@
-# Folia-Expansion
+# FoliaPAPIExpansion
 
-[![CI](https://github.com/SamTheDevDE/Folia-Expansion/actions/workflows/build.yml/badge.svg)](https://github.com/SamTheDevDE/Folia-Expansion/actions/workflows/build.yml)
-[![Latest release](https://img.shields.io/github/v/release/SamTheDevDE/Folia-Expansion?display_name=tag)](https://github.com/SamTheDevDE/Folia-Expansion/releases/latest)
-[![License](https://img.shields.io/github/license/SamTheDevDE/Folia-Expansion)](LICENSE)
+[![CI](https://github.com/SamTheDevDE/FoliaPAPIExpansion/actions/workflows/build.yml/badge.svg)](https://github.com/SamTheDevDE/FoliaPAPIExpansion/actions/workflows/build.yml)
+[![Latest release](https://img.shields.io/github/v/release/SamTheDevDE/FoliaPAPIExpansion?display_name=tag)](https://github.com/SamTheDevDE/FoliaPAPIExpansion/releases/latest)
+[![License](https://img.shields.io/github/license/SamTheDevDE/FoliaPAPIExpansion)](LICENSE)
 ![Java 25](https://img.shields.io/badge/Java-25-orange)
 ![Folia 26.2](https://img.shields.io/badge/Folia-26.2-blue)
 
@@ -10,7 +10,7 @@ A lightweight Kotlin PlaceholderAPI expansion exposing Folia scheduler and serve
 
 ## About
 
-Folia-Expansion exposes global-region and current-player-region tick statistics without scheduling tasks, blocking a region thread, performing I/O, or contacting external services. Version 2 is a ground-up Kotlin rewrite designed for modern Folia servers.
+FoliaPAPIExpansion exposes global-region and current-player-region tick statistics without scheduling tasks, blocking a region thread, performing I/O, or contacting external services. Version 2 is a ground-up Kotlin rewrite designed for modern Folia servers.
 
 The expansion is designed for frequently refreshed displays such as TAB. Folia-specific, non-public metric access is contained in one provider so the parser, formatter, health logic, and configuration remain independent and testable.
 
@@ -37,7 +37,7 @@ Folia 26.2 itself is still published as a beta at the pinned build. That qualifi
 ## Installation
 
 1. Install Folia 26.2 and PlaceholderAPI 2.12.3.
-2. Download `Folia-Expansion-<version>.jar` from this repository's Releases page.
+2. Download `FoliaPAPIExpansion-<version>.jar` from this repository's Releases page.
 3. Put the JAR in `plugins/PlaceholderAPI/expansions/`.
 4. Restart the backend or run `/papi reload`.
 5. Verify with `/papi parse me %folia_global_tps_5s%`.
@@ -106,7 +106,7 @@ A common proxy layout is:
 
 ```text
 Velocity proxy: TAB
-Folia backend: PlaceholderAPI + TAB-Bridge + Folia-Expansion
+Folia backend: PlaceholderAPI + TAB-Bridge + FoliaPAPIExpansion
 ```
 
 Use the placeholders in the backend/server section of TAB configuration, for example:
@@ -166,7 +166,7 @@ Install Java 25, then run:
 ./gradlew clean check build --warning-mode=all
 ```
 
-The installable artifact is `build/libs/Folia-Expansion-<version>.jar`. The build also creates a thin development JAR and a sources JAR; neither is the server install artifact. The Gradle build is Kotlin DSL, compiles Kotlin to JVM 25 bytecode, and packages/relocates Kotlin stdlib while leaving server dependencies provided.
+The installable artifact is `build/libs/FoliaPAPIExpansion-<version>.jar`. The build also creates a thin development JAR and a sources JAR; neither is the server install artifact. The Gradle build is Kotlin DSL, compiles Kotlin to JVM 25 bytecode, and packages/relocates Kotlin stdlib while leaving server dependencies provided.
 
 ## Releases
 
@@ -183,8 +183,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Please keep parsing and formatting indep
 
 ## Credits
 
-This project is a modernized Kotlin rewrite of [VanillaAdventures/Folia-Expansion](https://github.com/VanillaAdventures/Folia-Expansion).
+This project is a modernized Kotlin rewrite of [VanillaAdventures/FoliaPAPIExpansion](https://github.com/VanillaAdventures/FoliaPAPIExpansion).
 
 ## License
 
-Folia-Expansion remains licensed under [GPL-3.0-or-later](LICENSE). Kotlin stdlib is distributed under Apache-2.0 inside the runtime JAR; its license notice is preserved in the artifact.
+FoliaPAPIExpansion remains licensed under [GPL-3.0-or-later](LICENSE). Kotlin stdlib is distributed under Apache-2.0 inside the runtime JAR; its license notice is preserved in the artifact.

@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a reproducible Folia-Expansion problem
+description: Report a reproducible FoliaPAPIExpansion problem
 title: "[Bug]: "
 labels: [bug]
 body:
@@ -10,7 +10,7 @@ body:
     id: expansion
     attributes:
       label: Expansion version
-      placeholder: 2.0.0
+      placeholder: 2.0.2
     validations:
       required: true
   - type: input

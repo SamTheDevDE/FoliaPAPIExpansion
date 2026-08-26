@@ -1,13 +1,13 @@
-// Folia-Expansion
+// FoliaPAPIExpansion
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package org.dreeam.expansion.folia.placeholder
+package de.samthedev.FoliaPAPIExpansion.placeholder
 
-import org.dreeam.expansion.folia.config.ExpansionConfig
-import org.dreeam.expansion.folia.metrics.MetricInterval
-import org.dreeam.expansion.folia.metrics.MetricProvider
-import org.dreeam.expansion.folia.metrics.MetricSnapshot
+import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricInterval
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricProvider
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricSnapshot
 
 internal class PlaceholderRenderer(
     private val provider: MetricProvider,

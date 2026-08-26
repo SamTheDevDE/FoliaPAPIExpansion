@@ -1,8 +1,8 @@
-// Folia-Expansion
+// FoliaPAPIExpansion
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package org.dreeam.expansion.folia
+package de.samthedev.FoliaPAPIExpansion
 
 import io.papermc.paper.ServerBuildInfo
 import net.kyori.adventure.key.Key

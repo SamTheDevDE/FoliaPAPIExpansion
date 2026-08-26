@@ -1,11 +1,11 @@
-// Folia-Expansion
+// FoliaPAPIExpansion
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package org.dreeam.expansion.folia.health
+package de.samthedev.FoliaPAPIExpansion.health
 
-import org.dreeam.expansion.folia.config.ExpansionConfig
-import org.dreeam.expansion.folia.metrics.MetricSample
+import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
+import de.samthedev.FoliaPAPIExpansion.metrics.MetricSample
 
 internal class HealthEvaluator(private val config: ExpansionConfig) {
     fun evaluate(sample: MetricSample?): HealthStatus? {

@@ -43,7 +43,7 @@ jobs:
         shell: bash
         run: |
           test -z "$(find src -type f -name '*.java' -print -quit)"
-          artifact="build/libs/Folia-Expansion-$(./gradlew -q printVersion).jar"
+          artifact="build/libs/FoliaPAPIExpansion-$(./gradlew -q printVersion).jar"
           test -f "$artifact"
           jar tf "$artifact" > "$RUNNER_TEMP/jar-entries.txt"
           grep -q '^org/dreeam/expansion/folia/libs/kotlin/jvm/internal/Intrinsics.class$' "$RUNNER_TEMP/jar-entries.txt"
@@ -52,7 +52,7 @@ jobs:
       - name: Upload installable expansion
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: Folia-Expansion
-          path: build/release/Folia-Expansion-*.jar
+          name: FoliaPAPIExpansion
+          path: build/release/FoliaPAPIExpansion-*.jar
           if-no-files-found: error
           retention-days: 14

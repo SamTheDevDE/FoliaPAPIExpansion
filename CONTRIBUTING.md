@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for improving Folia-Expansion.
+Thank you for improving FoliaPAPIExpansion.
 
 ## Development setup
 

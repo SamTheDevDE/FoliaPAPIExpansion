@@ -8,8 +8,8 @@ plugins {
     id("com.gradleup.shadow") version "9.6.1"
 }
 
-group = "org.dreeam.expansion.folia"
-version = "2.0.1"
+group = "de.samthedev.foliapapiexpansion"
+version = "2.0.2"
 description = "A lightweight Kotlin PlaceholderAPI expansion for Folia metrics"
 
 repositories {
@@ -68,7 +68,7 @@ tasks.withType<Test>().configureEach {
 tasks.processResources {
     from("LICENSE") {
         into("META-INF")
-        rename { "LICENSE-Folia-Expansion.txt" }
+        rename { "LICENSE-FoliaPAPIExpansion.txt" }
     }
     from("THIRD-PARTY-NOTICES.md") {
         into("META-INF")
@@ -96,11 +96,11 @@ tasks.jar {
 }
 
 tasks.named<ShadowJar>("shadowJar") {
-    archiveBaseName.set("Folia-Expansion")
+    archiveBaseName.set("FoliaPAPIExpansion")
     archiveClassifier.set("")
     archiveVersion.set(project.version.toString())
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    relocate("kotlin", "org.dreeam.expansion.folia.libs.kotlin")
+    relocate("kotlin", "de.samthedev.FoliaPAPIExpansion.libs.kotlin")
 }
 
 val stageReleaseArtifact = tasks.register<Copy>("stageReleaseArtifact") {
