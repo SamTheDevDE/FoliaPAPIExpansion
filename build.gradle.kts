@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "org.dreeam.expansion.folia"
-version = "2.0.0"
+version = "2.0.1"
 description = "A lightweight Kotlin PlaceholderAPI expansion for Folia metrics"
 
 repositories {
