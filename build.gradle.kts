@@ -116,9 +116,12 @@ tasks.build {
 }
 
 tasks.register("printVersion") {
+    val projectVersion = project.version.toString()
+
     group = "help"
     description = "Prints the project version for release automation."
+
     doLast {
-        println(project.version)
+        println(projectVersion)
     }
 }
