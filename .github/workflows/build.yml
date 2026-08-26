@@ -46,7 +46,7 @@ jobs:
           artifact="build/libs/FoliaPAPIExpansion-$(./gradlew -q printVersion).jar"
           test -f "$artifact"
           jar tf "$artifact" > "$RUNNER_TEMP/jar-entries.txt"
-          grep -q '^org/dreeam/expansion/folia/libs/kotlin/jvm/internal/Intrinsics.class$' "$RUNNER_TEMP/jar-entries.txt"
+          grep -q '^de/samthedev/foliapapiexpansion/libs/kotlin/jvm/internal/Intrinsics.class$' "$RUNNER_TEMP/jar-entries.txt"
           ! grep -Eq '^(kotlin/|me/clip/placeholderapi/|org/bukkit/|io/papermc/|net/minecraft/)' "$RUNNER_TEMP/jar-entries.txt"
 
       - name: Upload installable expansion
