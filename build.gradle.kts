@@ -100,7 +100,7 @@ tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set("")
     archiveVersion.set(project.version.toString())
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    relocate("kotlin", "de.samthedev.FoliaPAPIExpansion.libs.kotlin")
+    relocate("kotlin", "de.samthedev.foliapapiexpansion.libs.kotlin")
 }
 
 val stageReleaseArtifact = tasks.register<Copy>("stageReleaseArtifact") {
