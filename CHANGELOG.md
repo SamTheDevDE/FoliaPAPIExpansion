@@ -6,6 +6,19 @@ All notable changes are documented here. This project follows [Semantic Versioni
 
 ## [2.0.2] - 2026-08-26
 
+### Changed
+
+- Renamed the project from Folia-Expansion to FoliaPAPIExpansion.
+- Updated the artifact name, Gradle project identity, Kotlin package namespace, repository links, documentation, and automation to match the new name.
+
+## [2.0.1] - 2026-08-26
+
+### Fixed
+
+- Made the `printVersion` Gradle task compatible with the configuration cache.
+
+## [2.0.0] - 2026-08-26
+
 ### Added
 
 - Complete idiomatic Kotlin rewrite targeting JVM/Java 25 and Folia 26.2.
@@ -28,4 +41,6 @@ All notable changes are documented here. This project follows [Semantic Versioni
 - All Java source, Guava caching, Adventure formatting, and the internal Folia `CommandUtil` dependency.
 
 [Unreleased]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.2...HEAD
-[2.0.2]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/400fbee...v2.0.2
+[2.0.2]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.1...v2.0.2
+[2.0.1]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.0...v2.0.1
+[2.0.0]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/400fbee...v2.0.0
