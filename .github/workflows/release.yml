@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish tagged release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact tag
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: ${{ github.ref }}
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@4c125117fe7c5aed11272ec4213f602f012f89f2 # v5
+
+      - name: Set up Java 25
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@4c125117fe7c5aed11272ec4213f602f012f89f2 # v5
+
+      - name: Verify tag matches project version
+        shell: bash
+        run: |
+          project_version="$(./gradlew -q printVersion)"
+          test "$GITHUB_REF_NAME" = "v${project_version}"
+
+      - name: Test and build
+        run: ./gradlew clean check build --warning-mode=all
+
+      - name: Verify and checksum runtime artifact
+        id: artifact
+        shell: bash
+        run: |
+          test -z "$(find src -type f -name '*.java' -print -quit)"
+          project_version="$(./gradlew -q printVersion)"
+          artifact="build/libs/Folia-Expansion-${project_version}.jar"
+          test -f "$artifact"
+          jar tf "$artifact" > "$RUNNER_TEMP/jar-entries.txt"
+          grep -q '^org/dreeam/expansion/folia/libs/kotlin/jvm/internal/Intrinsics.class$' "$RUNNER_TEMP/jar-entries.txt"
+          ! grep -Eq '^(kotlin/|me/clip/placeholderapi/|org/bukkit/|io/papermc/|net/minecraft/)' "$RUNNER_TEMP/jar-entries.txt"
+          checksum="${artifact}.sha256"
+          sha256sum "$artifact" > "$checksum"
+          echo "artifact=$artifact" >> "$GITHUB_OUTPUT"
+          echo "checksum=$checksum" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT: ${{ steps.artifact.outputs.artifact }}
+          CHECKSUM: ${{ steps.artifact.outputs.checksum }}
+        run: gh release create "$GITHUB_REF_NAME" "$ARTIFACT" "$CHECKSUM" --verify-tag --generate-notes --title "Folia-Expansion $GITHUB_REF_NAME"

@@ -1,29 +1,58 @@
-name: Build Folia-Expansion
+name: Build
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
-    name: Build
+    name: Java 25 / Folia 26.2
     runs-on: ubuntu-latest
-    if: "github.actor != 'dependabot[bot]'"
     steps:
-      - uses: actions/checkout@main
-      - name: Set up JDK 17
-        uses: actions/setup-java@main
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          java-version: 17
+          persist-credentials: false
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@4c125117fe7c5aed11272ec4213f602f012f89f2 # v5
+
+      - name: Set up Java 25
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
           distribution: temurin
+          java-version: "25"
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build
-        run: ./gradlew clean build
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@4c125117fe7c5aed11272ec4213f602f012f89f2 # v5
 
-      - name: Upload Folia-Expansion Nightly
-        uses: actions/upload-artifact@main
+      - name: Build and test
+        run: ./gradlew clean check build --warning-mode=all
+
+      - name: Verify source and runtime artifact
+        shell: bash
+        run: |
+          test -z "$(find src -type f -name '*.java' -print -quit)"
+          artifact="build/libs/Folia-Expansion-$(./gradlew -q printVersion).jar"
+          test -f "$artifact"
+          jar tf "$artifact" > "$RUNNER_TEMP/jar-entries.txt"
+          grep -q '^org/dreeam/expansion/folia/libs/kotlin/jvm/internal/Intrinsics.class$' "$RUNNER_TEMP/jar-entries.txt"
+          ! grep -Eq '^(kotlin/|me/clip/placeholderapi/|org/bukkit/|io/papermc/|net/minecraft/)' "$RUNNER_TEMP/jar-entries.txt"
+
+      - name: Upload installable expansion
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: Folia-Expansion-Nightly
-          path: build/libs/*.jar
+          name: Folia-Expansion
+          path: build/release/Folia-Expansion-*.jar
+          if-no-files-found: error
+          retention-days: 14

@@ -1,5 +1,13 @@
-.idea
+.gradle/
+.kotlin/
+.idea/
+.vscode/
+bin/
+build/
+out/
+run/
+server/
+test-server/
 *.iml
-
-.gradle
-build
+*.log
+.env

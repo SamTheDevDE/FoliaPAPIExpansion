@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest a focused metric or maintainability improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Explain the user-facing need and why existing placeholders do not cover it.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: Relevant public Folia API
+      description: Link the public API if one exists; brittle internals are not added solely for novelty.
