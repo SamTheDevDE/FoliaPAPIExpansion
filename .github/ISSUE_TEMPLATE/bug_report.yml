@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a reproducible Folia-Expansion problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please remove secrets, IP addresses, and unrelated server files before submitting logs.
+  - type: input
+    id: expansion
+    attributes:
+      label: Expansion version
+      placeholder: 2.0.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Folia, PlaceholderAPI, and Java versions
+      placeholder: Folia 26.2 build 7, PlaceholderAPI 2.12.3, Java 25
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      render: text
