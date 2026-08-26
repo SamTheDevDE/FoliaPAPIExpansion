@@ -2,9 +2,9 @@
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.placeholder
+package de.samthedev.foliapapiexpansion.placeholder
 
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricInterval
+import de.samthedev.foliapapiexpansion.metrics.MetricInterval
 
 internal enum class MetricScope {
     GLOBAL,

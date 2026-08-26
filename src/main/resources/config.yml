@@ -1,0 +1,25 @@
+format:
+  decimal-places: 2
+  unavailable: "N/A"
+
+tps:
+  healthy: 19.5
+  warning: 18.0
+
+mspt:
+  healthy: 40.0
+  warning: 50.0
+
+utilization:
+  healthy: 80.0
+  warning: 100.0
+
+colors:
+  healthy: "&a"
+  warning: "&e"
+  critical: "&c"
+
+health:
+  healthy: "HEALTHY"
+  warning: "DEGRADED"
+  critical: "OVERLOADED"

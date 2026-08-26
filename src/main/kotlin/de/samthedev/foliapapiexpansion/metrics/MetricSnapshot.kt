@@ -2,7 +2,7 @@
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.metrics
+package de.samthedev.foliapapiexpansion.metrics
 
 internal data class MetricSample(
     val tps: Double?,

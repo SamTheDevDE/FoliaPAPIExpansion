@@ -4,6 +4,20 @@ All notable changes are documented here. This project follows [Semantic Versioni
 
 ## [Unreleased]
 
+## [2.0.3] - 2026-08-27
+
+### Added
+
+- Added a real Folia `JavaPlugin` entrypoint and version-expanded `plugin.yml` for normal `/plugins` installation and plugin-platform distribution.
+- Added plugin-owned defaults in `plugins/FoliaPAPIExpansion/config.yml`.
+
+### Changed
+
+- The plugin now registers and unregisters its internal `folia` PlaceholderAPI expansion with the server plugin lifecycle.
+- Normalized all production and test packages to lowercase `de.samthedev.foliapapiexpansion`.
+- Moved configuration from PlaceholderAPI's `expansions.folia` section to the plugin's standard configuration file while preserving the existing keys.
+- CI and releases now verify the plugin descriptor, entrypoint, relocated Kotlin runtime, and excluded server dependencies.
+
 ## [2.0.2] - 2026-08-26
 
 ### Changed
@@ -40,7 +54,8 @@ All notable changes are documented here. This project follows [Semantic Versioni
 
 - All Java source, Guava caching, Adventure formatting, and the internal Folia `CommandUtil` dependency.
 
-[Unreleased]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.3...HEAD
+[2.0.3]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/SamTheDevDE/FoliaPAPIExpansion/compare/400fbee...v2.0.0

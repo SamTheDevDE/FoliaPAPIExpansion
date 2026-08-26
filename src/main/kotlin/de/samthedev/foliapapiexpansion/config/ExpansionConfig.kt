@@ -2,9 +2,9 @@
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.config
+package de.samthedev.foliapapiexpansion.config
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion
+import org.bukkit.configuration.ConfigurationSection
 
 internal data class Thresholds(
     val healthy: Double,
@@ -55,27 +55,27 @@ internal data class ExpansionConfig(
         const val DEFAULT_UNAVAILABLE = "N/A"
         private const val MAX_DECIMAL_PLACES = 6
 
-        fun from(expansion: PlaceholderExpansion): ExpansionConfig = ExpansionConfig(
-            decimalPlaces = expansion.getInt("format.decimal-places", DEFAULT_DECIMAL_PLACES),
-            unavailable = expansion.getString("format.unavailable", DEFAULT_UNAVAILABLE) ?: DEFAULT_UNAVAILABLE,
+        fun from(config: ConfigurationSection): ExpansionConfig = ExpansionConfig(
+            decimalPlaces = config.getInt("format.decimal-places", DEFAULT_DECIMAL_PLACES),
+            unavailable = config.getString("format.unavailable", DEFAULT_UNAVAILABLE) ?: DEFAULT_UNAVAILABLE,
             tps = Thresholds(
-                healthy = expansion.getDouble("tps.healthy", 19.5),
-                warning = expansion.getDouble("tps.warning", 18.0),
+                healthy = config.getDouble("tps.healthy", 19.5),
+                warning = config.getDouble("tps.warning", 18.0),
             ),
             mspt = Thresholds(
-                healthy = expansion.getDouble("mspt.healthy", 40.0),
-                warning = expansion.getDouble("mspt.warning", 50.0),
+                healthy = config.getDouble("mspt.healthy", 40.0),
+                warning = config.getDouble("mspt.warning", 50.0),
             ),
             utilization = Thresholds(
-                healthy = expansion.getDouble("utilization.healthy", 80.0),
-                warning = expansion.getDouble("utilization.warning", 100.0),
+                healthy = config.getDouble("utilization.healthy", 80.0),
+                warning = config.getDouble("utilization.warning", 100.0),
             ),
-            healthyColor = expansion.getString("colors.healthy", "&a") ?: "&a",
-            warningColor = expansion.getString("colors.warning", "&e") ?: "&e",
-            criticalColor = expansion.getString("colors.critical", "&c") ?: "&c",
-            healthyLabel = expansion.getString("health.healthy", "HEALTHY") ?: "HEALTHY",
-            warningLabel = expansion.getString("health.warning", "DEGRADED") ?: "DEGRADED",
-            criticalLabel = expansion.getString("health.critical", "OVERLOADED") ?: "OVERLOADED",
+            healthyColor = config.getString("colors.healthy", "&a") ?: "&a",
+            warningColor = config.getString("colors.warning", "&e") ?: "&e",
+            criticalColor = config.getString("colors.critical", "&c") ?: "&c",
+            healthyLabel = config.getString("health.healthy", "HEALTHY") ?: "HEALTHY",
+            warningLabel = config.getString("health.warning", "DEGRADED") ?: "DEGRADED",
+            criticalLabel = config.getString("health.critical", "OVERLOADED") ?: "OVERLOADED",
         ).validated()
     }
 }

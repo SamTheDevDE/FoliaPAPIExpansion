@@ -7,10 +7,10 @@ body:
     attributes:
       value: Please remove secrets, IP addresses, and unrelated server files before submitting logs.
   - type: input
-    id: expansion
+    id: plugin_version
     attributes:
-      label: Expansion version
-      placeholder: 2.0.2
+      label: Plugin version
+      placeholder: 2.0.3
     validations:
       required: true
   - type: input

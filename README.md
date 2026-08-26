@@ -6,13 +6,13 @@
 ![Java 25](https://img.shields.io/badge/Java-25-orange)
 ![Folia 26.2](https://img.shields.io/badge/Folia-26.2-blue)
 
-A lightweight Kotlin PlaceholderAPI expansion exposing Folia scheduler and server-health metrics.
+A lightweight Kotlin Folia plugin exposing scheduler and server-health metrics through PlaceholderAPI.
 
 ## About
 
-FoliaPAPIExpansion exposes global-region and current-player-region tick statistics without scheduling tasks, blocking a region thread, performing I/O, or contacting external services. Version 2 is a ground-up Kotlin rewrite designed for modern Folia servers.
+FoliaPAPIExpansion is a Folia plugin that exposes Folia performance and health metrics through PlaceholderAPI. It does not modify Folia itself.
 
-The expansion is designed for frequently refreshed displays such as TAB. Folia-specific, non-public metric access is contained in one provider so the parser, formatter, health logic, and configuration remain independent and testable.
+The plugin registers its `%folia_*%` PlaceholderAPI expansion during startup without scheduling tasks, blocking region threads, or contacting external services. Folia-specific, non-public metric access is contained in one provider so the plugin lifecycle, parser, formatter, health logic, and configuration remain separated and testable.
 
 ## Features
 
@@ -22,8 +22,9 @@ The expansion is designed for frequently refreshed displays such as TAB. Folia-s
 - Scheduler thread and active-region counts
 - Null-player support for every global placeholder
 - Locale-independent number formatting and safe handling of unavailable/invalid reports
-- Short, lock-free publication caches; no coroutines, telemetry, networking, or filesystem reads
-- Self-contained release JAR with a relocated Kotlin runtime
+- Short, lock-free publication caches; no coroutines, telemetry, networking, or per-request filesystem reads
+- Genuine Folia plugin entrypoint and `plugin.yml`, suitable for normal `/plugins` installation
+- Self-contained plugin JAR with a relocated Kotlin runtime
 
 ## Requirements
 
@@ -36,13 +37,15 @@ Folia 26.2 itself is still published as a beta at the pinned build. That qualifi
 
 ## Installation
 
-1. Install Folia 26.2 and PlaceholderAPI 2.12.3.
-2. Download `FoliaPAPIExpansion-<version>.jar` from this repository's Releases page.
-3. Put the JAR in `plugins/PlaceholderAPI/expansions/`.
-4. Restart the backend or run `/papi reload`.
+1. Install Folia 26.2.
+2. Install PlaceholderAPI 2.12.3.
+3. Download `FoliaPAPIExpansion-<version>.jar` and put it directly in the server's `plugins/` directory.
+4. Start or restart the server.
 5. Verify with `/papi parse me %folia_global_tps_5s%`.
 
-Do not install the `-thin` or `-sources` artifacts. The release JAR contains the relocated Kotlin runtime needed on a clean server, but does not contain Folia, Paper, Bukkit, Minecraft, or PlaceholderAPI classes.
+Do not put this plugin in `plugins/PlaceholderAPI/expansions/`, and do not install the `-thin` or `-sources` artifacts. The release JAR contains the plugin descriptor and relocated Kotlin runtime needed on a clean server, but does not contain Folia, Paper, Bukkit, Minecraft, or PlaceholderAPI classes.
+
+The artifact is a genuine server plugin and can be published on Modrinth as project type **Plugin** with the **Folia** loader.
 
 ## Placeholders
 
@@ -121,34 +124,34 @@ TAB and TAB-Bridge are optional; any PlaceholderAPI consumer can use the expansi
 
 ## Configuration
 
-PlaceholderAPI writes configurable expansion defaults beneath `expansions.folia` in its configuration. Defaults work without editing:
+The plugin writes its defaults to `plugins/FoliaPAPIExpansion/config.yml` on first startup:
 
 ```yaml
-expansions:
-  folia:
-    format:
-      decimal-places: 2
-      unavailable: "N/A"
-    tps:
-      healthy: 19.5
-      warning: 18.0
-    mspt:
-      healthy: 40.0
-      warning: 50.0
-    utilization:
-      healthy: 80.0
-      warning: 100.0
-    colors:
-      healthy: "&a"
-      warning: "&e"
-      critical: "&c"
-    health:
-      healthy: "HEALTHY"
-      warning: "DEGRADED"
-      critical: "OVERLOADED"
+format:
+  decimal-places: 2
+  unavailable: "N/A"
+tps:
+  healthy: 19.5
+  warning: 18.0
+mspt:
+  healthy: 40.0
+  warning: 50.0
+utilization:
+  healthy: 80.0
+  warning: 100.0
+colors:
+  healthy: "&a"
+  warning: "&e"
+  critical: "&c"
+health:
+  healthy: "HEALTHY"
+  warning: "DEGRADED"
+  critical: "OVERLOADED"
 ```
 
-TPS at or above `healthy` is healthy; TPS at or above `warning` is degraded. MSPT/utilization at or below `healthy` is healthy and at or below `warning` is degraded. Reload PlaceholderAPI after changing values. Decimal places are safely clamped from 0 through 6, and numbers always use `Locale.ROOT` (`19.98`, never locale-dependent `19,98`).
+TPS at or above `healthy` is healthy; TPS at or above `warning` is degraded. MSPT/utilization at or below `healthy` is healthy and at or below `warning` is degraded. Restart the plugin/server after changing values. Decimal places are safely clamped from 0 through 6, and numbers always use `Locale.ROOT` (`19.98`, never locale-dependent `19,98`).
+
+Versions through 2.0.2 stored these same keys under `expansions.folia` in PlaceholderAPI's `config.yml`. When upgrading from the external expansion, copy the contents below `expansions.folia` into `plugins/FoliaPAPIExpansion/config.yml` without the `expansions` and `folia` wrapper keys. The old external-expansion configuration is not read by the plugin.
 
 Version 2 replaces the old `tps_color.high`, `tps_color.medium`, and `tps_color.low` configuration keys with `colors.healthy`, `colors.warning`, and `colors.critical`. Placeholder names did not change, but custom version 1 colors must be copied to the new keys once.
 
@@ -158,6 +161,8 @@ Global placeholders do not require a player. Region placeholders only read the c
 
 Metrics use Folia internals because no public API exposes these tick reports. The provider is pinned to Folia 26.2 and may require an update for a later Minecraft/Folia release. See [SECURITY.md](SECURITY.md) for reporting problems.
 
+The plugin declares PlaceholderAPI as a required dependency and disables itself with a clear error if the runtime platform is not Folia. It does not claim compatibility with Paper, Purpur, Spigot, or Bukkit servers.
+
 ## Building
 
 Install Java 25, then run:
@@ -166,7 +171,7 @@ Install Java 25, then run:
 ./gradlew clean check build --warning-mode=all
 ```
 
-The installable artifact is `build/libs/FoliaPAPIExpansion-<version>.jar`. The build also creates a thin development JAR and a sources JAR; neither is the server install artifact. The Gradle build is Kotlin DSL, compiles Kotlin to JVM 25 bytecode, and packages/relocates Kotlin stdlib while leaving server dependencies provided.
+The installable artifact is `build/libs/FoliaPAPIExpansion-<version>.jar`. It is a normal Folia plugin JAR containing `plugin.yml`. The build also creates a thin development JAR and a sources JAR; neither is the server install artifact. The Gradle build is Kotlin DSL, compiles Kotlin to JVM 25 bytecode, and packages/relocates Kotlin stdlib while leaving server dependencies provided.
 
 ## Releases
 
@@ -183,7 +188,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Please keep parsing and formatting indep
 
 ## Credits
 
-This project is a modernized Kotlin rewrite of [VanillaAdventures/FoliaPAPIExpansion](https://github.com/VanillaAdventures/FoliaPAPIExpansion).
+This project is a modernized Kotlin rewrite of [VanillaAdventures/Folia-Expansion](https://github.com/VanillaAdventures/Folia-Expansion).
 
 ## License
 

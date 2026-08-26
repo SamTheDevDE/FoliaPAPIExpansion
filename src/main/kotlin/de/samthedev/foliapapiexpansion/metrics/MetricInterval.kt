@@ -2,7 +2,7 @@
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.metrics
+package de.samthedev.foliapapiexpansion.metrics
 
 internal enum class MetricInterval(val token: String) {
     FIVE_SECONDS("5s"),

@@ -2,14 +2,14 @@
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.placeholder
+package de.samthedev.foliapapiexpansion.placeholder
 
-import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
-import de.samthedev.FoliaPAPIExpansion.health.HealthEvaluator
-import de.samthedev.FoliaPAPIExpansion.health.HealthStatus
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricInterval
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricSample
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricSnapshot
+import de.samthedev.foliapapiexpansion.config.ExpansionConfig
+import de.samthedev.foliapapiexpansion.health.HealthEvaluator
+import de.samthedev.foliapapiexpansion.health.HealthStatus
+import de.samthedev.foliapapiexpansion.metrics.MetricInterval
+import de.samthedev.foliapapiexpansion.metrics.MetricSample
+import de.samthedev.foliapapiexpansion.metrics.MetricSnapshot
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols

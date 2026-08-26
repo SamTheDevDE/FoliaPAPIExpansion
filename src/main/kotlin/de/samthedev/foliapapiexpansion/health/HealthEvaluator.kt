@@ -2,10 +2,10 @@
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.health
+package de.samthedev.foliapapiexpansion.health
 
-import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricSample
+import de.samthedev.foliapapiexpansion.config.ExpansionConfig
+import de.samthedev.foliapapiexpansion.metrics.MetricSample
 
 internal class HealthEvaluator(private val config: ExpansionConfig) {
     fun evaluate(sample: MetricSample?): HealthStatus? {

@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.placeholder
+package de.samthedev.foliapapiexpansion.placeholder
 
-import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricInterval
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricProvider
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricSample
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricSnapshot
-import de.samthedev.FoliaPAPIExpansion.metrics.ServerUtilizationSnapshot
+import de.samthedev.foliapapiexpansion.config.ExpansionConfig
+import de.samthedev.foliapapiexpansion.metrics.MetricInterval
+import de.samthedev.foliapapiexpansion.metrics.MetricProvider
+import de.samthedev.foliapapiexpansion.metrics.MetricSample
+import de.samthedev.foliapapiexpansion.metrics.MetricSnapshot
+import de.samthedev.foliapapiexpansion.metrics.ServerUtilizationSnapshot
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -18,7 +18,7 @@ class PlaceholderRendererTest {
         capturedAtNanos = 1L,
     )
     private val provider = FakeProvider(metricSnapshot)
-    private val renderer = PlaceholderRenderer(provider, ExpansionConfig(), "2.0.2")
+    private val renderer = PlaceholderRenderer(provider, ExpansionConfig(), "2.0.3")
 
     @Test
     fun `global placeholders work without a player region context`() {
@@ -45,7 +45,7 @@ class PlaceholderRendererTest {
         )
         assertEquals("4", renderer.render(ParsedPlaceholder.SchedulerThreads, false))
         assertEquals("7", renderer.render(ParsedPlaceholder.RegionCount, false))
-        assertEquals("2.0.2", renderer.render(ParsedPlaceholder.ExpansionVersion, false))
+        assertEquals("2.0.3", renderer.render(ParsedPlaceholder.ExpansionVersion, false))
     }
 
     private class FakeProvider(private val snapshot: MetricSnapshot) : MetricProvider {

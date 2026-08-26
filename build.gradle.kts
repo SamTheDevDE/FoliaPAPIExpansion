@@ -9,8 +9,8 @@ plugins {
 }
 
 group = "de.samthedev.foliapapiexpansion"
-version = "2.0.2"
-description = "A lightweight Kotlin PlaceholderAPI expansion for Folia metrics"
+version = "2.0.3"
+description = "A lightweight Folia plugin exposing performance metrics through PlaceholderAPI"
 
 repositories {
     mavenCentral()
@@ -66,6 +66,14 @@ tasks.withType<Test>().configureEach {
 }
 
 tasks.processResources {
+    val pluginProperties = mapOf("version" to project.version.toString())
+
+    inputs.properties(pluginProperties)
+    filteringCharset = "UTF-8"
+    filesMatching("plugin.yml") {
+        expand(pluginProperties)
+    }
+
     from("LICENSE") {
         into("META-INF")
         rename { "LICENSE-FoliaPAPIExpansion.txt" }
@@ -105,7 +113,7 @@ tasks.named<ShadowJar>("shadowJar") {
 
 val stageReleaseArtifact = tasks.register<Copy>("stageReleaseArtifact") {
     group = "build"
-    description = "Stages only the runtime-ready expansion JAR for CI and releases."
+    description = "Stages only the runtime-ready plugin JAR for CI and releases."
     dependsOn(tasks.shadowJar)
     from(tasks.shadowJar.flatMap { it.archiveFile })
     into(layout.buildDirectory.dir("release"))

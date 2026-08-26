@@ -1,0 +1,10 @@
+name: FoliaPAPIExpansion
+version: '${version}'
+main: de.samthedev.foliapapiexpansion.FoliaPAPIExpansionPlugin
+api-version: '26.2'
+author: SamTheDevDE
+description: Exposes Folia performance and health metrics through PlaceholderAPI.
+website: https://github.com/SamTheDevDE/FoliaPAPIExpansion
+depend:
+  - PlaceholderAPI
+folia-supported: true

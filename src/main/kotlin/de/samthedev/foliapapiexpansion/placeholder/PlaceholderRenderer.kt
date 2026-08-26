@@ -2,12 +2,12 @@
 // Copyright (C) 2026 SamTheDevDE
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package de.samthedev.FoliaPAPIExpansion.placeholder
+package de.samthedev.foliapapiexpansion.placeholder
 
-import de.samthedev.FoliaPAPIExpansion.config.ExpansionConfig
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricInterval
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricProvider
-import de.samthedev.FoliaPAPIExpansion.metrics.MetricSnapshot
+import de.samthedev.foliapapiexpansion.config.ExpansionConfig
+import de.samthedev.foliapapiexpansion.metrics.MetricInterval
+import de.samthedev.foliapapiexpansion.metrics.MetricProvider
+import de.samthedev.foliapapiexpansion.metrics.MetricSnapshot
 
 internal class PlaceholderRenderer(
     private val provider: MetricProvider,
